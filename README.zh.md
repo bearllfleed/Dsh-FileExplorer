@@ -18,31 +18,31 @@
 
 **资源管理器展开效果**
 
-![image-20260814191017877](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191017877.png)
+![image-20260814191017877](images/image-20260814191017877.png)
 
 **资源管理器收起效果**
 
-![image-20260814191151324](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191151324.png)
+![image-20260814191151324](images/image-20260814191151324.png)
 
 **文件设置**
 
-![image-20260814191353139](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191353139.png)
+![image-20260814191353139](images/image-20260814191353139.png)
 
 **文件搜索**
 
-![image-20260814191128598](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191128598.png)
+![image-20260814191128598](images/image-20260814191128598.png)
 
 **打开文件**
 
-![image-20260814191319335](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191319335.png)
+![image-20260814191319335](images/image-20260814191319335.png)
 
 **markdown大纲**
 
-![image-20260814191618157](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191618157.png)
+![image-20260814191618157](images/image-20260814191618157.png)
 
 **关闭未保存文件**
 
-![image-20260814191433042](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191433042.png)
+![image-20260814191433042](images/image-20260814191433042.png)
 
 ## 安装
 

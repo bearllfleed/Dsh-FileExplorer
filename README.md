@@ -18,31 +18,31 @@ A VS Code-style workspace file explorer for the [DeepSeek Harness (DSH)](https:/
 
 **Explorer expanded**
 
-![image-20260814191017877](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191017877.png)
+![image-20260814192713396](images/image-20260814192713396.png)
 
 **Explorer collapsed**
 
-![image-20260814191151324](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191151324.png)
+![image-20260814192843856](images/image-20260814192843856.png)
 
 **File settings**
 
-![image-20260814191353139](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191353139.png)
+![image-20260814192911768](images/image-20260814192911768.png)
 
 **File search**
 
-![image-20260814191128598](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191128598.png)
+![image-20260814192939635](images/image-20260814192939635.png)
 
 **Open file**
 
-![image-20260814191319335](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191319335.png)
+![image-20260814191319335](images/image-20260814191319335.png)
 
 **Markdown outline**
 
-![image-20260814191618157](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191618157.png)
+![image-20260814193038550](images/image-20260814193038550.png)
 
 **Closing an unsaved file**
 
-![image-20260814191433042](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191433042.png)
+![image-20260814193108813](images/image-20260814193108813.png)
 
 ## Installation
 
