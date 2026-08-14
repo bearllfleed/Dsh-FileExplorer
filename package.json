@@ -10,10 +10,10 @@
     "plugin"
   ],
   "license": "MIT",
-  "author": "YOUR_NAME",
+  "author": "bearllfleed",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_GITHUB_USERNAME/dsh-plugin-file-explorer.git"
+    "url": "https://github.com/bearllfleed/dsh-plugin-file-explorer.git"
   },
   "type": "module",
   "main": "lib/index.js",
