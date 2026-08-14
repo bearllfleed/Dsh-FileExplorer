@@ -16,7 +16,33 @@
 
 ## 效果
 
+**资源管理器展开效果**
 
+![image-20260814191017877](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191017877.png)
+
+**资源管理器收起效果**
+
+![image-20260814191151324](/Users/bearllflee/Library/Application Support/typora-user-images/image-20260814191151324.png)
+
+**文件设置**
+
+![image-20260814191353139](/Users/bearllflee/Library/Application Support/typora-user-images/image-20260814191353139.png)
+
+**文件搜索**
+
+![image-20260814191128598](/Users/bearllflee/Library/Application Support/typora-user-images/image-20260814191128598.png)
+
+**打开文件**
+
+![image-20260814191319335](/Users/bearllflee/Library/Application Support/typora-user-images/image-20260814191319335.png)
+
+**markdown大纲**
+
+![image-20260814191618157](/Users/bearllflee/Library/Application Support/typora-user-images/image-20260814191618157.png)
+
+**关闭未保存文件**
+
+![image-20260814191433042](/Users/bearllflee/Library/Application Support/typora-user-images/image-20260814191433042.png)
 
 ## 安装
 
