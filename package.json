@@ -1,0 +1,45 @@
+{
+  "name": "dsh-plugin-file-explorer",
+  "version": "0.1.0",
+  "description": "VS Code 风格的工作区文件浏览器 + 可编辑标签页 + Markdown 悬浮大纲 + Quick Open 搜索，DeepSeek Harness (DSH) 插件",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "file-explorer",
+    "markdown",
+    "plugin"
+  ],
+  "license": "MIT",
+  "author": "YOUR_NAME",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_GITHUB_USERNAME/dsh-plugin-file-explorer.git"
+  },
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "types": "./lib/client.d.ts",
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib"
+  ],
+  "dsh": {
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ],
+      "platform": "web"
+    }
+  }
+}
