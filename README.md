@@ -14,6 +14,36 @@ A VS Code-style workspace file explorer for the [DeepSeek Harness (DSH)](https:/
 - **i18n**: switches between Chinese and English by following the DSH general setting.
 - **Editor font**: customize the editor font for opened files in the settings panel (monospace contexts).
 
+## Screenshots
+
+**Explorer expanded**
+
+![image-20260814191017877](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191017877.png)
+
+**Explorer collapsed**
+
+![image-20260814191151324](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191151324.png)
+
+**File settings**
+
+![image-20260814191353139](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191353139.png)
+
+**File search**
+
+![image-20260814191128598](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191128598.png)
+
+**Open file**
+
+![image-20260814191319335](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191319335.png)
+
+**Markdown outline**
+
+![image-20260814191618157](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191618157.png)
+
+**Closing an unsaved file**
+
+![image-20260814191433042](/Users/bearllflee/.dsh/plugins/file-explorer/images/image-20260814191433042.png)
+
 ## Installation
 
 > Requires DSH with an initialized `web` profile (auto-created on first `dsh web`).
