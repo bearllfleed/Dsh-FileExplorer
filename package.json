@@ -29,7 +29,8 @@
     "./package.json": "./package.json"
   },
   "files": [
-    "lib"
+    "lib",
+    "README.zh.md"
   ],
   "dsh": {
     "client": {

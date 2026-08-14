@@ -1,38 +1,39 @@
 # dsh-plugin-file-explorer
 
-给 [DeepSeek Harness (DSH)](https://www.deepseek.com) Web 界面加一个 VS Code 风格的工作区文件浏览器：右侧文件树 + 可编辑标签页 + Markdown 阅读/编辑/分屏 + 悬浮大纲 + Quick Open 搜索。
+English | [中文](README.zh.md)
 
-## 功能
+A VS Code-style workspace file explorer for the [DeepSeek Harness (DSH)](https://www.deepseek.com) web UI: right-side file tree + editable tabs + Markdown read/edit/split + floating outline + Quick Open.
 
-- **文件树**：右侧资源管理器，按类型着色图标，可折叠目录，点击在中心区打开文件。
-- **可编辑标签页**：中心区标签页（位于「对话 / 轨迹」之后），支持语法高亮、Tab 缩进、`⌘/Ctrl+S` 保存、悬停 `×` 关闭、右键菜单（关闭 / 关闭其他 / 关闭右侧 / 关闭已保存 / 全部关闭 / 复制路径 / 固定）。
-- **自动保存**：可配置「关闭 / 延迟保存 / 失焦保存」，关闭未保存文件时弹确认框。
-- **Markdown**：Typora/Obsidian 式「阅读 / 编辑 / 分屏」三模式；阅读模式右侧悬浮大纲，鼠标悬停展开（类似 ChatGPT 悬浮条）。
-- **Quick Open**：`⌘/Ctrl+P` 按文件名模糊搜索并打开文件（与 VS Code 一致），也可点侧栏放大镜按钮进入。
-- **多语言**：跟随 DSH 通用设置自动切换中文 / 英文。
-- **编辑器字体**：设置面板可自定义打开文件的编辑器字体（等宽上下文）。
+## Features
 
-## 安装
+- **File tree**: right-side explorer with type-colored icons and collapsible folders; click a file to open it in the center area.
+- **Editable tabs**: center tabs (after the conversation/trace tabs) with syntax highlighting, Tab indent, `⌘/Ctrl+S` save, hover `×` close, and a right-click menu (Close / Close Others / Close to the Right / Close Saved / Close All / Copy Path / Pin).
+- **Auto-save**: configurable "Off / After delay / On focus lost"; a confirm dialog guards closing unsaved files.
+- **Markdown**: Typora/Obsidian-style "Read / Edit / Split" modes; a floating outline on the right in read mode that expands on hover (like ChatGPT's hover bar).
+- **Quick Open**: `⌘/Ctrl+P` fuzzy file search and open (same as VS Code); also reachable via the magnifier button in the sidebar header.
+- **i18n**: switches between Chinese and English by following the DSH general setting.
+- **Editor font**: customize the editor font for opened files in the settings panel (monospace contexts).
 
-> 需要已安装 DSH 并初始化过 `web` profile（首次运行 `dsh web` 会自动生成）。
+## Installation
 
-### 方式一：从 npm 安装
+> Requires DSH with an initialized `web` profile (auto-created on first `dsh web`).
+
+### Option 1: install from npm
 
 ```bash
-# 1) 安装到 web profile（等价于在该 profile 目录执行 pnpm add）
+# 1) install into the web profile (equivalent to running `pnpm add` in that profile)
 dsh plugin --profile web add dsh-plugin-file-explorer
 ```
 
-### 方式二：从 GitHub 安装（无需发布 npm）
+### Option 2: install from GitHub (no npm publish required)
 
 ```bash
-dsh plugin --profile web add github:<你的用户名>/dsh-plugin-file-explorer
+dsh plugin --profile web add github:bearllfleed/dsh-plugin-file-explorer
 ```
 
-### 然后启用插件
+### Then enable the plugin
 
-安装只把包放进依赖，还需要在 profile 的 `cordis.patch.yml` 里登记，DSH 才会加载它。编辑
-`$DSH_HOME/profiles/web/cordis.patch.yml`，加入：
+Installing only adds the package as a dependency; you must also register it in the profile's `cordis.patch.yml` so DSH loads it. Edit `$DSH_HOME/profiles/web/cordis.patch.yml` and add:
 
 ```yaml
 - insert:
@@ -40,39 +41,38 @@ dsh plugin --profile web add github:<你的用户名>/dsh-plugin-file-explorer
       name: 'dsh-plugin-file-explorer'
 ```
 
-`id` 是配置树中的唯一标识（可自定义），`name` 必须是 npm 包名。
+`id` is a unique identifier in the config tree (customizable); `name` must be the npm package name.
 
-### 重启
+### Restart
 
 ```bash
 dsh web
-# 然后刷新 http://127.0.0.1:3080
+# then refresh http://127.0.0.1:3080
 ```
 
-## 使用
+## Usage
 
-| 操作 | 快捷键 / 入口 |
+| Action | Shortcut / entry |
 |---|---|
-| 打开 / 关闭文件树 | 右侧活动栏文件图标 |
-| 打开文件 | 文件树点击；或 `⌘/Ctrl+P` 搜索后回车 |
-| 保存 | `⌘/Ctrl+S` |
-| 关闭标签页 | 标签页悬停 `×`，或右键菜单 |
-| Markdown 模式 | 文件顶部「阅读 / 编辑 / 分屏」 |
-| Markdown 大纲 | 阅读模式右侧悬浮条，悬停展开 |
-| 编辑器字体 / 自动保存 | 侧栏齿轮设置按钮 |
+| Toggle file tree | file icon in the right activity bar |
+| Open a file | click in the tree; or `⌘/Ctrl+P` then Enter |
+| Save | `⌘/Ctrl+S` |
+| Close a tab | hover `×` on the tab, or right-click menu |
+| Markdown mode | "Read / Edit / Split" at the top of the file |
+| Markdown outline | hover the right floating bar in read mode |
+| Editor font / auto-save | gear button in the sidebar header |
 
-## 目录结构
+## Layout
 
 ```
-lib/index.js    宿主侧（Node）路由：list / read / raw / write / files
-lib/client.js   浏览器侧 bundle：文件树、编辑器、Markdown、大纲、Quick Open
-package.json    插件清单（dsh.client.inject / platform）
+lib/index.js    host (Node) routes: list / read / raw / write / files
+lib/client.js   browser bundle: tree, editor, Markdown, outline, Quick Open
+package.json    plugin manifest (dsh.client.inject / platform)
 ```
 
-## 开发
+## Development
 
-改完 `lib/` 后，若插件通过 `file:` 链接安装，直接同步到
-`$DSH_HOME/profiles/web/node_modules/dsh-plugin-file-explorer/lib/` 即可；否则重新 `dsh plugin add` 并重启。
+After editing `lib/`, if the plugin is installed via a `file:` link, sync to `$DSH_HOME/profiles/web/node_modules/dsh-plugin-file-explorer/lib/`; otherwise re-run `dsh plugin add` and restart.
 
 ## License
 
