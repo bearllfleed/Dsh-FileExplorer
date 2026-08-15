@@ -7,6 +7,8 @@ A VS Code-style workspace file explorer for the [DeepSeek Harness (DSH)](https:/
 ## Features
 
 - **File tree**: right-side explorer with type-colored icons and collapsible folders; click a file to open it in the center area.
+- **Right-click menu**: right-click the file tree → New File / New Folder / Rename / Delete / Copy Path (like the VS Code explorer).
+- **Drag-and-drop move**: drag a file or folder onto a folder to move it (like VS Code); open tabs update their path automatically when a file is moved.
 - **Editable tabs**: center tabs (after the conversation/trace tabs) with syntax highlighting, Tab indent, `⌘/Ctrl+S` save, hover `×` close, and a right-click menu (Close / Close Others / Close to the Right / Close Saved / Close All / Copy Path / Pin).
 - **Auto-save**: configurable "Off / After delay / On focus lost"; a confirm dialog guards closing unsaved files.
 - **Markdown**: Typora/Obsidian-style "Read / Edit / Split" modes; a floating outline on the right in read mode that expands on hover (like ChatGPT's hover bar).
@@ -48,10 +50,14 @@ A VS Code-style workspace file explorer for the [DeepSeek Harness (DSH)](https:/
 
 > Requires DSH with an initialized `web` profile (auto-created on first `dsh web`).
 
+`dsh plugin` is DSH's built-in plugin manager; it forwards the arguments to pnpm inside the profile directory. **Always use it, not `npm install -g`** — DSH loads plugins from `$DSH_HOME/profiles/web/node_modules`, and it never reads the global directory (Windows `AppData\Roaming\npm`), so a global install has no effect.
+
+> Prerequisite: `dsh plugin` shells out to pnpm, so install pnpm first (`npm install -g pnpm`), otherwise it fails with `pnpm not found on PATH`.
+
 ### Option 1: install from npm
 
 ```bash
-# 1) install into the web profile (equivalent to running `pnpm add` in that profile)
+# install into the web profile (equivalent to running `pnpm add` in that profile)
 dsh plugin --profile web add dsh-plugin-file-explorer
 ```
 
@@ -59,6 +65,27 @@ dsh plugin --profile web add dsh-plugin-file-explorer
 
 ```bash
 dsh plugin --profile web add github:bearllfleed/dsh-plugin-file-explorer
+```
+
+### Update
+
+```bash
+dsh plugin --profile web update dsh-plugin-file-explorer
+```
+
+### Uninstall
+
+```bash
+dsh plugin --profile web remove dsh-plugin-file-explorer
+```
+
+### Check installed / latest version
+
+```bash
+# version actually loaded (looked up inside the profile)
+dsh plugin --profile web list dsh-plugin-file-explorer
+# latest on npm
+npm view dsh-plugin-file-explorer version
 ```
 
 ### Then enable the plugin
@@ -80,12 +107,24 @@ dsh web
 # then refresh http://127.0.0.1:3080
 ```
 
+> After install/update you must **fully quit and restart the `dsh web` process** (host routes are registered at startup) and hard-refresh the page with `⌘/Ctrl+Shift+R` (the browser bundle is cached). A plain page refresh won't pick up new features.
+
+### New features don't show up after updating?
+
+Check in order:
+
+1. **DSH not fully restarted** — host routes (new file / rename / delete) are registered at process startup; quit `dsh web` and start it again, not just refresh the page.
+2. **Browser cache** — the right-click menu and drag-and-drop live in the browser bundle; hard-refresh or use an incognito window.
+3. **Wrong location / wrong version** — `dsh plugin --profile web list dsh-plugin-file-explorer` shows the actually-loaded version; if it's an old one, it was likely installed with `npm install -g` into the global directory (which DSH ignores). Re-run `dsh plugin --profile web add ...` above.
+
 ## Usage
 
 | Action | Shortcut / entry |
 |---|---|
 | Toggle file tree | file icon in the right activity bar |
 | Open a file | click in the tree; or `⌘/Ctrl+P` then Enter |
+| New / rename / delete | right-click menu in the tree |
+| Move a file / folder | drag it onto the target folder |
 | Save | `⌘/Ctrl+S` |
 | Close a tab | hover `×` on the tab, or right-click menu |
 | Markdown mode | "Read / Edit / Split" at the top of the file |
@@ -95,7 +134,7 @@ dsh web
 ## Layout
 
 ```
-lib/index.js    host (Node) routes: list / read / raw / write / files
+lib/index.js    host (Node) routes: list / read / raw / write / create / rename / delete / files
 lib/client.js   browser bundle: tree, editor, Markdown, outline, Quick Open
 package.json    plugin manifest (dsh.client.inject / platform)
 ```

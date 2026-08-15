@@ -7,6 +7,8 @@
 ## 功能
 
 - **文件树**：右侧资源管理器，按类型着色图标，可折叠目录，点击在中心区打开文件。
+- **右键菜单**：文件树右键 → 新建文件 / 新建文件夹 / 重命名 / 删除 / 复制路径（类 VS Code 资源管理器）。
+- **拖拽移动**：把文件或文件夹拖到目标文件夹即可移动（类 VS Code）；移动已打开的文件时标签页自动同步路径。
 - **可编辑标签页**：中心区标签页（位于「对话 / 轨迹」之后），支持语法高亮、Tab 缩进、`⌘/Ctrl+S` 保存、悬停 `×` 关闭、右键菜单（关闭 / 关闭其他 / 关闭右侧 / 关闭已保存 / 全部关闭 / 复制路径 / 固定）。
 - **自动保存**：可配置「关闭 / 延迟保存 / 失焦保存」，关闭未保存文件时弹确认框。
 - **Markdown**：Typora/Obsidian 式「阅读 / 编辑 / 分屏」三模式；阅读模式右侧悬浮大纲，鼠标悬停展开（类似 ChatGPT 悬浮条）。
@@ -48,10 +50,14 @@
 
 > 需要已安装 DSH 并初始化过 `web` profile（首次运行 `dsh web` 会自动生成）。
 
+`dsh plugin` 是 DSH 内置的插件管理命令，会把参数转发给 profile 目录里的 pnpm。**请始终用它，不要用 `npm install -g`**——DSH 从 `$DSH_HOME/profiles/web/node_modules` 加载插件，全局目录（Windows 的 `AppData\Roaming\npm`）DSH 根本不读取，装了也不会生效。
+
+> 前提：`dsh plugin` 底层调用 pnpm，请先装好 pnpm（`npm install -g pnpm`），否则会报 `pnpm not found on PATH`。
+
 ### 方式一：从 npm 安装
 
 ```bash
-# 1) 安装到 web profile（等价于在该 profile 目录执行 pnpm add）
+# 安装到 web profile（等价于在该 profile 目录执行 pnpm add）
 dsh plugin --profile web add dsh-plugin-file-explorer
 ```
 
@@ -59,6 +65,27 @@ dsh plugin --profile web add dsh-plugin-file-explorer
 
 ```bash
 dsh plugin --profile web add github:bearllfleed/dsh-plugin-file-explorer
+```
+
+### 更新
+
+```bash
+dsh plugin --profile web update dsh-plugin-file-explorer
+```
+
+### 卸载
+
+```bash
+dsh plugin --profile web remove dsh-plugin-file-explorer
+```
+
+### 查看已装版本 / 线上版本
+
+```bash
+# 实际加载的版本（在 profile 里查）
+dsh plugin --profile web list dsh-plugin-file-explorer
+# npm 线上最新版
+npm view dsh-plugin-file-explorer version
 ```
 
 ### 然后启用插件
@@ -81,12 +108,24 @@ dsh web
 # 然后刷新 http://127.0.0.1:3080
 ```
 
+> 安装 / 更新后必须**彻底退出并重启 `dsh web` 进程**（宿主路由在启动时注册），并用 `⌘/Ctrl+Shift+R` 硬刷新页面（浏览器 bundle 会被缓存）。光刷新页面看不到新功能。
+
+### 更新后功能没生效？
+
+按顺序排查：
+
+1. **没完全重启 DSH** —— 新建 / 重命名 / 删除等宿主路由是进程启动时注册的，重装后必须退出 `dsh web` 再重启，而不是只刷新页面。
+2. **浏览器缓存** —— 右键菜单、拖拽在浏览器 bundle 里，用硬刷新或开无痕窗口。
+3. **装错位置 / 版本不对** —— `dsh plugin --profile web list dsh-plugin-file-explorer` 查实际加载的版本；如果显示旧版，多半是当初用 `npm install -g` 装到了全局目录（DSH 不读），重新跑一遍上面的 `dsh plugin --profile web add ...`。
+
 ## 使用
 
 | 操作 | 快捷键 / 入口 |
 |---|---|
 | 打开 / 关闭文件树 | 右侧活动栏文件图标 |
 | 打开文件 | 文件树点击；或 `⌘/Ctrl+P` 搜索后回车 |
+| 新建 / 重命名 / 删除 | 文件树右键菜单 |
+| 移动文件 / 文件夹 | 拖到目标文件夹 |
 | 保存 | `⌘/Ctrl+S` |
 | 关闭标签页 | 标签页悬停 `×`，或右键菜单 |
 | Markdown 模式 | 文件顶部「阅读 / 编辑 / 分屏」 |
@@ -96,7 +135,7 @@ dsh web
 ## 目录结构
 
 ```
-lib/index.js    宿主侧（Node）路由：list / read / raw / write / files
+lib/index.js    宿主侧（Node）路由：list / read / raw / write / create / rename / delete / files
 lib/client.js   浏览器侧 bundle：文件树、编辑器、Markdown、大纲、Quick Open
 package.json    插件清单（dsh.client.inject / platform）
 ```
