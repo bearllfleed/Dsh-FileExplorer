@@ -9,12 +9,14 @@ A VS Code-style workspace file explorer for the [DeepSeek Harness (DSH)](https:/
 - **File tree**: right-side explorer with type-colored icons and collapsible folders; click a file to open it in the center area.
 - **Right-click menu**: right-click the file tree → New File / New Folder / Rename / Delete / Copy Path (like the VS Code explorer).
 - **Drag-and-drop move**: drag a file or folder onto a folder to move it (like VS Code); open tabs update their path automatically when a file is moved.
+- **Import from your OS**: paste files copied in Finder / Windows Explorer (`⌘/Ctrl+V`) or drag them in from the desktop — folders keep their structure and name clashes are auto-renamed.
 - **Editable tabs**: center tabs (after the conversation/trace tabs) with syntax highlighting, Tab indent, `⌘/Ctrl+S` save, hover `×` close, and a right-click menu (Close / Close Others / Close to the Right / Close Saved / Close All / Copy Path / Pin).
 - **Auto-save**: configurable "Off / After delay / On focus lost"; a confirm dialog guards closing unsaved files.
 - **Markdown**: Typora/Obsidian-style "Read / Edit / Split" modes; a floating outline on the right in read mode that expands on hover (like ChatGPT's hover bar).
 - **Quick Open**: `⌘/Ctrl+P` fuzzy file search and open (same as VS Code); also reachable via the magnifier button in the sidebar header.
 - **i18n**: switches between Chinese and English by following the DSH general setting.
 - **Editor font**: customize the editor font for opened files in the settings panel (monospace contexts).
+- **Open chat files in-app**: clicking a file in the chat (a produced-file chip, an inline path mention, or a tool card's file link) opens it in the explorer editor tab instead of the browser/Finder.
 
 ## Screenshots
 
