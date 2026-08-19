@@ -1,6 +1,6 @@
 {
   "name": "dsh-plugin-file-explorer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "VS Code 风格的工作区文件浏览器 + 可编辑标签页 + Markdown 悬浮大纲 + Quick Open 搜索，DeepSeek Harness (DSH) 插件",
   "keywords": [
     "dsh",
